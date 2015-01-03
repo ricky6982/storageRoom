@@ -1,4 +1,6 @@
-storageRoom
+Storage Room
 ===========
 
-StorageRoom Permite la acumulación de dinero de un grupo de personas para comprar los productos para un evento festivo.
+StorageRoom es una app que permite crear un listado de personas para la acumulación de dinero con el fin de comprar los productos para un evento festivo.
+
+
