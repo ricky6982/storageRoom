@@ -1,7 +1,5 @@
 {% extends '::base.html.twig' %}
 
-{% set persona = {apellido: "Rodriguez", nombre: "Juan Carlos"} %}
-
 {% block titulo %}Administración de Personas{% endblock %}
 
 {% block contenido %}
@@ -12,6 +10,7 @@
         </div>
     </legend>
 
+    {% if personas | length != 0 %}
     <div class="table-responsive col-sm-8 col-sm-offset-2">
         <table class="table table-bordered table-striped">
             <thead>
@@ -20,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for item in [0,1,2,3,4,5,6,7] %}
+                {% for persona in personas %}
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ persona.apellido }}, {{ persona.nombre }}</td>
@@ -29,5 +28,9 @@
             </tbody>
         </table>
     </div>
+    {% else %}
+        <br>
+        <h1 class="text-center">No se Cargaron Personas</h1>
+    {% endif %}
 
 {% endblock %}

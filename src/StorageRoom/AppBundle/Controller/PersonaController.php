@@ -15,8 +15,12 @@ class PersonaController extends Controller
         $persona = new Persona();
         $formPersona = $this->createForm(new PersonaType, $persona);
 
+        $em = $this->getDoctrine()->getManager();
+        $personas = $em->getRepository('AppBundle:Persona')->findAll();
+
         return $this->render('AppBundle:Persona:index.html.twig', array(
                 'formPersona' => $formPersona->createView(),
+                'personas' => $personas,
             ));
     }
 
