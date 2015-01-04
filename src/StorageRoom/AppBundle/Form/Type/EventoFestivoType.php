@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use StorageRoom\AppBundle\Form\Type\ProductoType;
+
 class EventoFestivoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -19,7 +21,11 @@ class EventoFestivoType extends AbstractType
                     'expanded' => true,
                     'multiple' => true,
                 ))
-            ->add('productos')
+            ->add('productos', 'collection', array(
+                    'allow_add' => true,
+                    'prototype' => true,
+                    'type' => new ProductoType(),
+                ))
         ;
     }
 

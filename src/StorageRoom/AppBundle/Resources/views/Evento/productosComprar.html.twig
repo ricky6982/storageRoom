@@ -42,6 +42,11 @@
         </tbody>
     </table>
 
+    <div ng-repeat="producto in productos">
+        <input type="text" id="evento_festivo_productos_{{ $index }}_nombre" name="evento_festivo[productos][{{ $index }}][nombre]" value="{{ producto.nombre }}" required="required" maxlength="255" />
+        <input type="text" id="evento_festivo_productos_{{ $index }}_precio" name="evento_festivo[productos][{{ $index }}][precio]" value="{{ producto.precio }}" required="required" />
+    </div>
+
     <div class="pull-right">
         <div class="lead">Gasto Total: <em>{{ gastoTotal() | currency }}</em></div>
     </div>
