@@ -2,12 +2,30 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}StorageRoom{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        {% block headerJavascripts %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% include '::partials/header.html.twig' %}
+        
+        {% include '::partials/login.html.twig' %}
+
+        {% block notificaciones %}
+            {% include '::partials/alerts.html.twig' %}
+        {% endblock %}
+
+        <h1>
+            {% block titulo %}{% endblock %}
+        </h1>
+
+        {% include '::partials/navbar.html.twig' %}
+
+        {% block contenido %}{% endblock %}
+
+        {% include '::partials/footer.html.twig' %}
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
