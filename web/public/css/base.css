@@ -14,3 +14,10 @@ footer {
 .Site-content {
   flex: 1;
 }
+.login {
+  background-color: #DD5A13;
+  color: white;
+  height: 2.5em;
+  line-height: 2.5em;
+  vertical-align: middle;
+}
