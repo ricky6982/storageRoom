@@ -28,6 +28,11 @@ class Imagen
      */
     private $ruta;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="EventoFestivo", inversedBy="imagenes")
+     */
+    private $eventoFestivo;
+
 
     /**
      * Get id
@@ -60,5 +65,28 @@ class Imagen
     public function getRuta()
     {
         return $this->ruta;
+    }
+
+    /**
+     * Set eventoFestivo
+     *
+     * @param \StorageRoom\AppBundle\Entity\EventoFestivo $eventoFestivo
+     * @return Imagen
+     */
+    public function setEventoFestivo(\StorageRoom\AppBundle\Entity\EventoFestivo $eventoFestivo = null)
+    {
+        $this->eventoFestivo = $eventoFestivo;
+
+        return $this;
+    }
+
+    /**
+     * Get eventoFestivo
+     *
+     * @return \StorageRoom\AppBundle\Entity\EventoFestivo 
+     */
+    public function getEventoFestivo()
+    {
+        return $this->eventoFestivo;
     }
 }

@@ -56,6 +56,30 @@ class EventoFestivo
      */
     private $saldoActual;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Imagen", mappedBy="eventoFestivo")
+     */
+    private $imagenes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Producto", mappedBy="eventoFestivo")
+     */
+    private $productos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Persona", mappedBy="eventoFestivo")
+     */
+    private $participantes;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->imagenes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->productos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->participantes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -180,5 +204,104 @@ class EventoFestivo
     public function getSaldoActual()
     {
         return $this->saldoActual;
+    }
+
+    /**
+     * Add imagenes
+     *
+     * @param \StorageRoom\AppBundle\Entity\Imagen $imagenes
+     * @return EventoFestivo
+     */
+    public function addImagene(\StorageRoom\AppBundle\Entity\Imagen $imagenes)
+    {
+        $this->imagenes[] = $imagenes;
+
+        return $this;
+    }
+
+    /**
+     * Remove imagenes
+     *
+     * @param \StorageRoom\AppBundle\Entity\Imagen $imagenes
+     */
+    public function removeImagene(\StorageRoom\AppBundle\Entity\Imagen $imagenes)
+    {
+        $this->imagenes->removeElement($imagenes);
+    }
+
+    /**
+     * Get imagenes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImagenes()
+    {
+        return $this->imagenes;
+    }
+
+    /**
+     * Add productos
+     *
+     * @param \StorageRoom\AppBundle\Entity\Producto $productos
+     * @return EventoFestivo
+     */
+    public function addProducto(\StorageRoom\AppBundle\Entity\Producto $productos)
+    {
+        $this->productos[] = $productos;
+
+        return $this;
+    }
+
+    /**
+     * Remove productos
+     *
+     * @param \StorageRoom\AppBundle\Entity\Producto $productos
+     */
+    public function removeProducto(\StorageRoom\AppBundle\Entity\Producto $productos)
+    {
+        $this->productos->removeElement($productos);
+    }
+
+    /**
+     * Get productos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProductos()
+    {
+        return $this->productos;
+    }
+
+    /**
+     * Add participantes
+     *
+     * @param \StorageRoom\AppBundle\Entity\Persona $participantes
+     * @return EventoFestivo
+     */
+    public function addParticipante(\StorageRoom\AppBundle\Entity\Persona $participantes)
+    {
+        $this->participantes[] = $participantes;
+
+        return $this;
+    }
+
+    /**
+     * Remove participantes
+     *
+     * @param \StorageRoom\AppBundle\Entity\Persona $participantes
+     */
+    public function removeParticipante(\StorageRoom\AppBundle\Entity\Persona $participantes)
+    {
+        $this->participantes->removeElement($participantes);
+    }
+
+    /**
+     * Get participantes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getParticipantes()
+    {
+        return $this->participantes;
     }
 }

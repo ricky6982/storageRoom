@@ -35,6 +35,18 @@ class Persona
      */
     private $apellido;
 
+    /**
+     * @ORM\OneToMany(targetEntity="EventoFestivo", mappedBy="persona")
+     */
+    private $eventosAsistidos;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->eventosAsistidos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -90,5 +102,38 @@ class Persona
     public function getApellido()
     {
         return $this->apellido;
+    }
+
+    /**
+     * Add eventosAsistidos
+     *
+     * @param \StorageRoom\AppBundle\Entity\EventoFestivo $eventosAsistidos
+     * @return Persona
+     */
+    public function addEventosAsistido(\StorageRoom\AppBundle\Entity\EventoFestivo $eventosAsistidos)
+    {
+        $this->eventosAsistidos[] = $eventosAsistidos;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventosAsistidos
+     *
+     * @param \StorageRoom\AppBundle\Entity\EventoFestivo $eventosAsistidos
+     */
+    public function removeEventosAsistido(\StorageRoom\AppBundle\Entity\EventoFestivo $eventosAsistidos)
+    {
+        $this->eventosAsistidos->removeElement($eventosAsistidos);
+    }
+
+    /**
+     * Get eventosAsistidos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEventosAsistidos()
+    {
+        return $this->eventosAsistidos;
     }
 }

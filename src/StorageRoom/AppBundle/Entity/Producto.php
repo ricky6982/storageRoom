@@ -35,6 +35,11 @@ class Producto
      */
     private $precio;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="EventoFestivo", inversedBy="productos")
+     */
+    private $eventoFestivo;
+
 
     /**
      * Get id
@@ -90,5 +95,28 @@ class Producto
     public function getPrecio()
     {
         return $this->precio;
+    }
+
+    /**
+     * Set eventoFestivo
+     *
+     * @param \StorageRoom\AppBundle\Entity\EventoFestivo $eventoFestivo
+     * @return Producto
+     */
+    public function setEventoFestivo(\StorageRoom\AppBundle\Entity\EventoFestivo $eventoFestivo = null)
+    {
+        $this->eventoFestivo = $eventoFestivo;
+
+        return $this;
+    }
+
+    /**
+     * Get eventoFestivo
+     *
+     * @return \StorageRoom\AppBundle\Entity\EventoFestivo 
+     */
+    public function getEventoFestivo()
+    {
+        return $this->eventoFestivo;
     }
 }
