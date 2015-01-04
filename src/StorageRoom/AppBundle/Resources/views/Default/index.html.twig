@@ -3,5 +3,8 @@
 {% block titulo %}Menu Principal{% endblock %}
 
 {% block contenido %}
-    Pagina Principal
+    <a href="{{ path('persona_homepage') }}">Personas</a>
+    {# <a href="{{ path('eventos_homepage') }}">Eventos Festivos</a>
+    <a href="{{ path('admin_homepage') }}">Admin</a>
+    <a href="{{ path('superAdmin_homepage') }}">SuperAdmin</a> #}
 {% endblock %}
