@@ -8,7 +8,7 @@
     <legend>
         Listado de Personas
         <div class="pull-right">
-            {% include 'AppBundle:Persona:nuevo.html.twig' %}
+            {% include 'AppBundle:Persona:nuevo.html.twig' with {'formPersona': formPersona } only %}
         </div>
     </legend>
 

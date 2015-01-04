@@ -5,7 +5,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="nuevaPersonaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form action="" class="">
+  <form action="" class="form-horizontal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -13,7 +13,18 @@
           <h2 class="modal-title" id="myModalLabel">Nueva Persona</h2>
         </div>
         <div class="modal-body">
-          ...
+            <div class="form-group">
+              {{ form_label(formPersona.apellido, null, {label_attr:{'class': 'col-sm-3 control-label'}}) }}
+              <div class="col-sm-8">
+                {{ form_widget(formPersona.apellido, { attr: {'class': 'form-control' }}) }}
+              </div>
+            </div>
+            <div class="form-group">
+              {{ form_label(formPersona.nombre, null, {label_attr:{'class': 'col-sm-3 control-label'}}) }}
+              <div class="col-sm-8">
+                {{ form_widget(formPersona.nombre, { attr: {'class': 'form-control'}}) }}
+              </div>
+            </div>
         </div>
         <div class="modal-footer">
           <input type="submit" value="Guardar" class="btn btn-success">
