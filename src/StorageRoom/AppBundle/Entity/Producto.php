@@ -36,9 +36,14 @@ class Producto
     private $precio;
 
     /**
-     * @ORM\ManyToOne(targetEntity="EventoFestivo", inversedBy="productos")
+     * @ORM\ManyToOne(targetEntity="EventoFestivo", inversedBy="productos", cascade={"persist"})
      */
     private $eventoFestivo;
+
+    public function __toString()
+    {
+        return $this->nombre;
+    }
 
 
     /**

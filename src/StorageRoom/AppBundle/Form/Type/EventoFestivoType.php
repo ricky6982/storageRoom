@@ -20,11 +20,13 @@ class EventoFestivoType extends AbstractType
                     'class' => 'AppBundle:Persona',
                     'expanded' => true,
                     'multiple' => true,
+                    'mapped' => false,
                 ))
             ->add('productos', 'collection', array(
                     'allow_add' => true,
                     'prototype' => true,
                     'type' => new ProductoType(),
+                    'by_reference' => false,
                 ))
         ;
     }

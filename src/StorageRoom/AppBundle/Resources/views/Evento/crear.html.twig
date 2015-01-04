@@ -8,7 +8,7 @@
 
 {% block contenido %}
 <div ng-controller="eventoCtrl">
-    <form action="" method="POST" class="form-horizontal">
+    <form action="{{ path('evento_festivo_guardar') }}" method="POST" class="form-horizontal">
         <div class="form-group">
             {{ form_label(form.titulo, 'Título del Evento Festivo', {label_attr: {'class': 'col-sm-4 lead control-label'}}) }}
             <div class="col-sm-7">
@@ -42,7 +42,7 @@
 
         {% include 'AppBundle:Evento:participantes.html.twig' %}
 
-        <div style="display: none">
+        <div style="display: block">
             {{ form_widget(form) }}
         </div>
         

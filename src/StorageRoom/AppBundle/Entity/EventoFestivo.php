@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EventoFestivo
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity()
  */
 class EventoFestivo
 {
@@ -62,12 +62,12 @@ class EventoFestivo
     private $imagenes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Producto", mappedBy="eventoFestivo")
+     * @ORM\OneToMany(targetEntity="Producto", mappedBy="eventoFestivo", cascade={"persist"})
      */
     private $productos;
 
     /**
-     * @ORM\OneToMany(targetEntity="Persona", mappedBy="eventoFestivo")
+     * @ORM\OneToMany(targetEntity="Participante", mappedBy="eventoFestivo", cascade={"persist"})
      */
     private $participantes;
 
@@ -247,7 +247,8 @@ class EventoFestivo
      */
     public function addProducto(\StorageRoom\AppBundle\Entity\Producto $productos)
     {
-        $this->productos[] = $productos;
+        $productos->setEventoFestivo($this);
+        $this->productos->add($productos);
 
         return $this;
     }
@@ -275,10 +276,10 @@ class EventoFestivo
     /**
      * Add participantes
      *
-     * @param \StorageRoom\AppBundle\Entity\Persona $participantes
+     * @param \StorageRoom\AppBundle\Entity\Participante $participantes
      * @return EventoFestivo
      */
-    public function addParticipante(\StorageRoom\AppBundle\Entity\Persona $participantes)
+    public function addParticipante(\StorageRoom\AppBundle\Entity\Participante $participantes)
     {
         $this->participantes[] = $participantes;
 
@@ -288,9 +289,9 @@ class EventoFestivo
     /**
      * Remove participantes
      *
-     * @param \StorageRoom\AppBundle\Entity\Persona $participantes
+     * @param \StorageRoom\AppBundle\Entity\Participante $participantes
      */
-    public function removeParticipante(\StorageRoom\AppBundle\Entity\Persona $participantes)
+    public function removeParticipante(\StorageRoom\AppBundle\Entity\Participante $participantes)
     {
         $this->participantes->removeElement($participantes);
     }

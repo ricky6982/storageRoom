@@ -5,3 +5,8 @@ evento_festivo_homepage:
 evento_festivo_crear:
     path: /crear
     defaults: { _controller: 'AppBundle:Evento:crear' }
+
+evento_festivo_guardar:
+    path: /guardar
+    defaults: { _controller: 'AppBundle:Evento:guardar' }
+    methods: POST
