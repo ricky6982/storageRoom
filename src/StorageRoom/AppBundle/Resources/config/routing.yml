@@ -1,3 +1,20 @@
 app_homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
+
+super_admin:
+    resource: "@AppBundle/Resources/config/routing/superAdmin.yml"
+    prefix: /SuperAdmin
+
+admin:
+    resource: "@AppBundle/Resources/config/routing/admin.yml"
+    prefix: /Admin
+
+persona:
+    resource: "@AppBundle/Resources/config/routing/persona.yml"
+    prefix: /Persona
+
+eventos:
+    resource: "@AppBundle/Resources/config/routing/eventos.yml"
+    prefix: /EventosFestivos
+

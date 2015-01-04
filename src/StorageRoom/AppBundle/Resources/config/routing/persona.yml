@@ -1,0 +1,3 @@
+persona_homepage:
+    path: /
+    defaults: { _controller: "AppBundle:Persona:index" }
