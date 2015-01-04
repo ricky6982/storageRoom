@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Saldo
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="StorageRoom\AppBundle\Entity\Repository\SaldoRepository")
  */
 class Saldo
 {
