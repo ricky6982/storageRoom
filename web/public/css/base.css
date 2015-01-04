@@ -1,0 +1,16 @@
+header {
+  height: 120px;
+  background-color: #FFBF0C;
+}
+footer {
+  height: 80px;
+  background-color: #b1053c;
+}
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.Site-content {
+  flex: 1;
+}
