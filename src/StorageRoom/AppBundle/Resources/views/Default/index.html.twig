@@ -3,8 +3,8 @@
 {% block titulo %}Menu Principal{% endblock %}
 
 {% block contenido %}
-    <a href="{{ path('persona_homepage') }}">Personas</a>
-    {# <a href="{{ path('eventos_homepage') }}">Eventos Festivos</a>
-    <a href="{{ path('admin_homepage') }}">Admin</a>
-    <a href="{{ path('superAdmin_homepage') }}">SuperAdmin</a> #}
+    <a class="btn btn-lg btn-default" href="{{ path('persona_homepage') }}">Personas</a>
+    <a class="btn btn-lg btn-default" href="{{ path('evento_festivo_homepage') }}">Eventos Festivos</a>
+    {# <a class="btn btn-lg btn-default" href="{{ path('admin_homepage') }}">Admin</a> #}
+    {# <a class="btn btn-lg btn-default" href="{{ path('superAdmin_homepage') }}">SuperAdmin</a> #}
 {% endblock %}

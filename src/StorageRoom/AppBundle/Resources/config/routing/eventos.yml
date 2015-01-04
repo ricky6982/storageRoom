@@ -1,0 +1,7 @@
+evento_festivo_homepage:
+    path: /
+    defaults: { _controller: 'AppBundle:Evento:index' }
+
+evento_festivo_crear:
+    path: /crear
+    defaults: { _controller: 'AppBundle:Evento:crear' }
