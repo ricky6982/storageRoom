@@ -1,3 +1,8 @@
 persona_homepage:
     path: /
     defaults: { _controller: "AppBundle:Persona:index" }
+
+persona_crear:
+    path: /crear
+    defaults: { _controller: "AppBundle:Persona:crear" }
+    methods: POST

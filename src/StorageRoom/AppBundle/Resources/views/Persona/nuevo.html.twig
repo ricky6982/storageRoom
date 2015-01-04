@@ -5,7 +5,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="nuevaPersonaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form action="" class="form-horizontal">
+  <form action="{{ path('persona_crear') }}" class="form-horizontal" method="POST">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -25,6 +25,7 @@
                 {{ form_widget(formPersona.nombre, { attr: {'class': 'form-control'}}) }}
               </div>
             </div>
+            {{ form_widget(formPersona) }}
         </div>
         <div class="modal-footer">
           <input type="submit" value="Guardar" class="btn btn-success">
