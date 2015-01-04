@@ -2,10 +2,54 @@
 
 {% block titulo %}Crear Evento Festivo{% endblock %}
 
-{% block contenido %}
+{% block headerJavascripts %}
+    <script src="{{ asset('bundles/app/evento/js/crearEvento.js') }}"></script>
+{% endblock %}
 
+{% block contenido %}
+<div ng-controller="eventoCtrl">
     <form action="" method="POST" class="form-horizontal">
-        {{ form_widget(form) }}
+        <div class="form-group">
+            {{ form_label(form.titulo, 'Título del Evento Festivo', {label_attr: {'class': 'col-sm-4 lead control-label'}}) }}
+            <div class="col-sm-7">
+                {{ form_widget(form.titulo, {attr: {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.fecha, 'Fecha de Realización', {label_attr: {'class': 'col-sm-4 control-label'}}) }}
+            <div class="col-sm-7">
+                <div class="row">
+                <div class="col-xs-2">
+                    {{ form_widget(form.fecha.day, {attr: {'class': 'form-control'}}) }}
+                </div>
+                <div class="col-xs-3">
+                    {{ form_widget(form.fecha.month, {attr: {'class': 'form-control'}}) }}
+                </div>
+                <div class="col-xs-3">
+                    {{ form_widget(form.fecha.year, {attr: {'class': 'form-control'}}) }}
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.recaudacion, 'Monto a Recaudar ($)', {label_attr: {'class': 'col-sm-4 control-label'}}) }}
+            <div class="col-sm-3">
+                {{ form_widget(form.recaudacion, {attr: {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        {% include 'AppBundle:Evento:productosComprar.html.twig' %}
+
+        {% include 'AppBundle:Evento:participantes.html.twig' %}
+
+        <div style="display: none">
+            {{ form_widget(form) }}
+        </div>
+        
+        <div class="text-center">
+            <input type="submit" value="Confirmar y Calcular Aporte por Persona" class="btn btn-success btn-lg">
+        </div>
     </form>
+</div>
 
 {% endblock %}

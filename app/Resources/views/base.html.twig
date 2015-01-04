@@ -10,11 +10,12 @@
 
         <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bower_components/angular/angular.min.js') }}"></script>
         {% block headerJavascripts %}{% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body class="Site">
+    <body class="Site" ng-app="myApp">
         {% include '::partials/header.html.twig' %}
         
         {% include '::partials/login.html.twig' %}
@@ -27,9 +28,9 @@
             {% block titulo %}{% endblock %}
         </h1>
 
-        {% include '::partials/navbar.html.twig' %}
+        {# {% include '::partials/navbar.html.twig' %} #}
 
-        <div class="container Site-content">
+        <div class="container Site-content" style="margin-top: 2em;">
             {% block contenido %}{% endblock %}
         </div>
 

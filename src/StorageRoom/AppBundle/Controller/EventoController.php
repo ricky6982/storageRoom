@@ -24,8 +24,12 @@ class EventoController extends Controller
         $evento = new EventoFestivo();
         $form = $this->createForm(new EventoFestivoType(), $evento);
 
+        $em = $this->getDoctrine()->getManager();
+        $personas = $em->getRepository('AppBundle:Persona')->findAll();
+
         return $this->render('AppBundle:Evento:crear.html.twig', array(
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'personas' => $personas
             ));
     }
 }

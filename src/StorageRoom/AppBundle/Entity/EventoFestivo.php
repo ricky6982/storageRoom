@@ -29,9 +29,9 @@ class EventoFestivo
     private $titulo;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="fecha", type="datetime")
+     * @ORM\Column(name="fecha", type="date")
      */
     private $fecha;
 
@@ -117,7 +117,7 @@ class EventoFestivo
     /**
      * Set fecha
      *
-     * @param \DateTime $fecha
+     * @param \Date $fecha
      * @return EventoFestivo
      */
     public function setFecha($fecha)
@@ -130,7 +130,7 @@ class EventoFestivo
     /**
      * Get fecha
      *
-     * @return \DateTime 
+     * @return \Date 
      */
     public function getFecha()
     {

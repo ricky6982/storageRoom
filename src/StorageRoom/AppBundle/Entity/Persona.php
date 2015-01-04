@@ -48,6 +48,11 @@ class Persona
         $this->eventosAsistidos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getApellido() . ", " . $this->getNombre();
+    }
+
     /**
      * Get id
      *
