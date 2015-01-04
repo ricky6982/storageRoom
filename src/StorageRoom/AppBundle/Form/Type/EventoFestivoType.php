@@ -15,7 +15,6 @@ class EventoFestivoType extends AbstractType
         $builder
             ->add('titulo')
             ->add('fecha')
-            ->add('recaudacion')
             ->add('participantes', 'entity', array(
                     'class' => 'AppBundle:Persona',
                     'expanded' => true,

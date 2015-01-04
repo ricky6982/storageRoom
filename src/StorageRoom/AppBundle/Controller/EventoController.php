@@ -75,9 +75,18 @@ class EventoController extends Controller
             }
             $evento->setGasto($gasto);
 
+            if ($evento->getGasto() <= $saldoAnterior->getMonto()) {
+                $recaudacion = 0;
+            }else{
+                $recaudacion = $evento->getGasto() - $saldoAnterior->getMonto();
+            }
+
+            $evento->setRecaudacion($recaudacion);
 
             $em->persist($evento);
             $em->flush();
+
+            return $this->redirect($this->generateUrl('evento_festivo_resumen', array('id' => $evento->getId())));
         }
         
         return $this->render('AppBundle:Evento:guardar.html.twig', array());
