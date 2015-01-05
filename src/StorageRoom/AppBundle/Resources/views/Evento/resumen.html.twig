@@ -1,0 +1,87 @@
+{% extends '::base.html.twig' %}
+
+{% block titulo %} {{ evento.titulo | capitalize }} {% endblock %}
+
+{% block headerJavascripts %}
+<script>
+    resumen = {
+        "gastoTotal": {{ evento.gasto }},
+        "saldoAnterior": {{ saldo.monto }},
+        "recaudacion": {{ evento.recaudacion }}
+    };
+    participantes = [];
+    {% for participante in evento.participantes %}
+        participantes.push("{{ participante.persona.apellido | title }}, {{ participante.persona.nombre }}");
+    {% endfor %}
+</script>
+<script src="{{ asset('bundles/app/resumen/js/resumen.js') }}"></script>
+{% endblock %}
+
+{% block contenido %}
+<h3 class="text-right">Fecha: {{ evento.fecha | date('d-m-Y') }}</h3>
+
+{% verbatim %}
+<div ng-controller="resumenCtrl">
+    <div class="row">
+        <div class="col-sm-5">
+            <blockquote>
+                <legend>Resumen</legend>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <td>Gasto Total</td><td><strong>$ </strong>{{ resumen.gastoTotal }}</td>
+                    </tr>
+                    <tr>
+                        <td>Saldo Anterior</td><td><strong>$ </strong>{{ resumen.saldoAnterior }}</td>
+                    </tr>
+                    <tr>
+                        <td>Recaudación</td><td><strong>$ </strong><input type="number" ng-model="resumen.recaudacion" style="width: 75px;"></td>
+                    </tr>
+                    <tr>
+                        <td>Saldo Total</td>
+                        <td>
+                            <strong>$ </strong>{{ resumen.recaudacion + resumen.saldoAnterior - resumen.gastoTotal | currency:'' }}
+                            <span style="font-weight: bold; color: #D51129" ng-show="saldoTotal() < 0">Deuda</span>
+                        </td>
+                    </tr>
+                </table>
+
+            </blockquote>
+            <blockquote>
+                <legend>Participantes</legend>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nº</th><th>Apellido y Nombre</th><th>Aporte($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="participante in participantes track by $index">
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ participante }}</td>
+                            <td>
+                                <div ng-show="saldoTotal() >= 0">{{ resumen.recaudacion / participantes.length | currency:'$ '}}</div>
+                                <div ng-show="saldoTotal() < 0" class="text-danger">---</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </blockquote>
+            <div class="col-sm-7">
+                <!-- Funcionalidad Subir Imagenes -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% endverbatim %}
+        <form action="{{ path('evento_festivo_confirmar') }}" method="POST" class="row text-center">
+            {{ form_widget(formRecaudacion.recaudacion, { attr: {'ng-model': 'resumen.recaudacion'}}) }}
+            {{ form_widget(formRecaudacion) }}
+            <input type="submit" value="Confirmar e Imprimir Listado" class="btn btn-success btn-lg">
+        </form>
+        {% verbatim %}
+    </div>
+</div>
+
+{% endverbatim %}
+
+{% endblock %}

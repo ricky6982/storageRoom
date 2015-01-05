@@ -3,12 +3,14 @@
 namespace StorageRoom\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 
 use StorageRoom\AppBundle\Entity\EventoFestivo;
 use StorageRoom\AppBundle\Entity\Saldo;
 use StorageRoom\AppBundle\Entity\Participante;
 use StorageRoom\AppBundle\Form\Type\EventoFestivoType;
+use StorageRoom\AppBundle\Form\Type\RecaudacionType;
 
 class EventoController extends Controller
 {
@@ -90,5 +92,46 @@ class EventoController extends Controller
         }
         
         return $this->render('AppBundle:Evento:guardar.html.twig', array());
+    }
+
+    /**
+     * @ParamConverter("evento", class="AppBundle:EventoFestivo")
+     */
+    public function resumenAction(EventoFestivo $evento)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $saldo = $em->getRepository('AppBundle:Saldo')->findSaldoAnterior();
+
+        $formRecaudacion = $this->createForm(new RecaudacionType(), null, array('idEvento' => $evento->getId()));
+
+        return $this->render('AppBundle:Evento:resumen.html.twig', array(
+                'evento' => $evento,
+                'saldo' => $saldo,
+                'formRecaudacion' => $formRecaudacion->createView(),
+            ));
+    }
+
+    public function confirmarAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $formRecaudacion = $this->createForm(new RecaudacionType());
+        $formRecaudacion->handleRequest($request);
+
+        $evento = $em->getRepository('AppBundle:EventoFestivo')->find($formRecaudacion->get('evento')->getData());
+
+        return $this->redirect($this->generateUrl('evento_festivo_imprimir', array('id' => $evento->getId())));
+    }
+
+    /**
+     * @ParamConverter("evento", class="AppBundle:EventoFestivo")
+     */
+    public function imprimirAction(EventoFestivo $evento)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $saldo = $em->getRepository('AppBundle:Saldo')->findSaldoAnterior();
+        return $this->render('AppBundle:Evento:imprimir.html.twig', array(
+                'evento' => $evento,
+                'saldo' => $saldo
+            ));
     }
 }

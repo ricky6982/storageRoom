@@ -10,3 +10,16 @@ evento_festivo_guardar:
     path: /guardar
     defaults: { _controller: 'AppBundle:Evento:guardar' }
     methods: POST
+
+evento_festivo_resumen: 
+    path: /resumen/{id}
+    defaults: { _controller: 'AppBundle:Evento:resumen' }
+
+evento_festivo_confirmar:
+    path: /confirmar
+    defaults: { _controller: 'AppBundle:Evento:confirmar' }
+    methods: POST
+
+evento_festivo_imprimir:
+    path: /imprimir/{id}
+    defaults: { _controller: 'AppBundle:Evento:imprimir' }
