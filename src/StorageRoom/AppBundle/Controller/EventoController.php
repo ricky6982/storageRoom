@@ -18,9 +18,11 @@ class EventoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $listadoEventos = $em->getRepository('AppBundle:EventoFestivo')->findAll();
+        $saldoActual = $em->getRepository('AppBundle:Saldo')->findSaldoAnterior();
 
         return $this->render('AppBundle:Evento:index.html.twig', array(
                 'listadoEventos' => $listadoEventos,
+                'saldo' => $saldoActual,
             ));
     }
 
@@ -119,6 +121,18 @@ class EventoController extends Controller
         $formRecaudacion->handleRequest($request);
 
         $evento = $em->getRepository('AppBundle:EventoFestivo')->find($formRecaudacion->get('evento')->getData());
+        $evento->setEstado(true);
+        $evento->setRecaudacion(floatval($formRecaudacion->get('recaudacion')->getData()));
+
+        $saldoAnterior = $em->getRepository('AppBundle:Saldo')->find($evento->getSaldoActual());
+        
+        $saldoNuevo = new Saldo();
+        $saldoNuevo->setFecha(new \DateTime('now'));
+        $saldoNuevo->setMonto($evento->getRecaudacion() + $saldoAnterior->getMonto() - $evento->getGasto());
+
+        $em->persist($saldoNuevo);
+        $em->persist($evento);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('evento_festivo_imprimir', array('id' => $evento->getId())));
     }

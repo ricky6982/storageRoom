@@ -14,7 +14,7 @@ class RecaudacionType extends AbstractType
             ->add('evento', 'hidden', array(
                     'data' => $options['idEvento']
                 ))
-            ->add('recaudacion', 'hidden', array())
+            ->add('recaudacion')
         ;
     }
 

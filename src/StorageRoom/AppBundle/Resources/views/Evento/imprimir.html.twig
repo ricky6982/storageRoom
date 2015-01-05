@@ -13,15 +13,12 @@
                         <td>Gasto Total</td><td><strong>$ </strong>{{ evento.gasto }}</td>
                     </tr>
                     <tr>
-                        <td>Saldo Anterior</td><td><strong>$ </strong>{{ saldo.monto }}</td>
-                    </tr>
-                    <tr>
                         <td>Recaudación</td><td><strong>$ </strong>{{ evento.recaudacion }}</td>
                     </tr>
                     <tr>
                         <td>Saldo Total</td>
                         <td>
-                            <strong>$ </strong>{{ evento.recaudacion + saldo.monto - evento.gasto  }}
+                            <strong>$ </strong>{{ saldo.monto  }}
                         </td>
                     </tr>
                 </table>
