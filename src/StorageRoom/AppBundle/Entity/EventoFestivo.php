@@ -43,6 +43,13 @@ class EventoFestivo
     private $gasto;
 
     /**
+     * @var  boolean
+     *
+     * @ORM\Column(name="estado", type="boolean")
+     */
+    private $estado;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="recaudacion", type="decimal")
@@ -304,5 +311,28 @@ class EventoFestivo
     public function getParticipantes()
     {
         return $this->participantes;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param boolean $estado
+     * @return EventoFestivo
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return boolean 
+     */
+    public function getEstado()
+    {
+        return $this->estado;
     }
 }

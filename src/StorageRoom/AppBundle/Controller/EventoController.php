@@ -84,6 +84,7 @@ class EventoController extends Controller
             }
 
             $evento->setRecaudacion($recaudacion);
+            $evento->setEstado(false);
 
             $em->persist($evento);
             $em->flush();
