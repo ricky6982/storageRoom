@@ -74,7 +74,7 @@
     <div class="row">
         {% endverbatim %}
         <form action="{{ path('evento_festivo_confirmar') }}" method="POST" class="row text-center">
-            {{ form_widget(formRecaudacion.recaudacion, { attr: {'ng-model': 'resumen.recaudacion'}}) }}
+            {{ form_widget(formRecaudacion.recaudacion, { attr: {'ng-model': 'resumen.recaudacion', 'style': 'display:none'}}) }}
             {{ form_widget(formRecaudacion) }}
             <input type="submit" value="Confirmar e Imprimir Listado" class="btn btn-success btn-lg">
         </form>
